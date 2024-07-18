@@ -1,0 +1,5 @@
+<ul class="list-group">
+    {% for city in cities %}
+        <li class="list-group-item">{{ city.name }} {% if city.additional_info %}- {{ city.additional_info }} {% endif %}</li>
+    {% endfor %}
+</ul>

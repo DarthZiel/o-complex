@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "user.apps.UserConfig",
-
+    "weather.apps.WeatherConfig",
 
 
 ]
@@ -114,7 +114,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 LOGIN_REDIRECT_URL = '/'
-STATIC_URL = "static/"
+STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'user.CustomUser'
 
 # Default primary key field type
