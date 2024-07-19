@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+import django_plotly_dash.views as dash_views
 
 urlpatterns = [
     path('', include('user.urls')),
     path('', include('weather.urls', namespace='weather')),
     path("admin/", admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('^django_plotly_dash/', include('django_plotly_dash.urls')),
+    #path('django_plotly_dash/', dash_views.DashAppView.as_view(), name='plotly_dash'),
 
 ]
