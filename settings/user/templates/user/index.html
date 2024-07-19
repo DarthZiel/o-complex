@@ -13,9 +13,8 @@
                 </form>
             </div>
         </div>
-        <div class="text-center mt-4">
-            <p>Последний город, который вы искали это - <span id="last-searched-city">{{ last_searched_city }}</span>. Желаете посмотреть погоду там?</p>
-            <a href="" class="btn btn-secondary">Yes</a>
-        </div>
+     <div hx-get="{% url 'weather:last_viewed_city_view' %}" hx-trigger="load">
+
+     </div>
 
 {% endblock %}

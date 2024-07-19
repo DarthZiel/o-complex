@@ -1,0 +1,8 @@
+<div class="text-center mt-4">
+    {% if last_city %}
+        <p>Последний город, который вы искали это - <a href="{% url 'weather:report' %}?name={{ last_city.name }}&latitude={{ last_city.latitude }}&longitude={{ last_city.longitude }}&additional_info={{ last_city.additional_info }}"> <span id="last-searched-city">{{ last_city.name }}</span> </a>. Желаете посмотреть погоду там?</p>
+        <a href="{% url 'weather:report' %}?name={{ last_city.name }}&latitude={{ last_city.latitude }}&longitude={{ last_city.longitude }}&additional_info={{ last_city.additional_info }}" class="btn btn-secondary">Yes</a>
+    {% else %}
+        <p>Вы еще не искали города.</p>
+    {% endif %}
+</div>

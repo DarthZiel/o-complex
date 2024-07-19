@@ -1,8 +1,8 @@
-import requests
-
 from django.contrib.auth import get_user_model
 import plotly.graph_objs as go
-from plotly.offline import plot
+from django_plotly_dash import DjangoDash
+import requests
+
 from weather.models import SearchHistory
 
 
@@ -54,13 +54,6 @@ def history_update(request):
         return search_history_instance.longitude, search_history_instance.latitude
 
 
-# dash_app.py
-import dash_core_components
-import dash_html_components as html
-import plotly.graph_objs as go
-from django_plotly_dash import DjangoDash
-import requests
-
 app = DjangoDash('TemperatureChart')  # идентификатор вашего Dash приложения
 
 
@@ -105,3 +98,13 @@ def build_chart(latitude, longitude):
     return app
 
 
+def last_viewed_city(request):
+    user = request.user
+    if user.is_authenticated:
+        history_record = SearchHistory.objects.filter(user=user).last()
+        return history_record
+    return None
+
+def get_history(request):
+    user = request.user.id
+    return SearchHistory.objects.filter(user=user)
