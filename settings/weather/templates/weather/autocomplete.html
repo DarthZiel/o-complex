@@ -1,5 +1,9 @@
 <ul class="list-group">
     {% for city in cities %}
-        <li class="list-group-item">{{ city.name }} {% if city.additional_info %}- {{ city.additional_info }} {% endif %}</li>
+    <a href="{% url 'weather:report' %}?name={{ city.name }}&latitude={{ city.latitude }}&longitude={{ city.longitude }}&additional_info={city.additional_info}">
+        <li class="list-group-item">
+            {{ city.name }} {% if city.additional_info %}- {{ city.additional_info }} {% endif %} ш.{{ city.latitude }} д.{{ city.longitude }}
+        </li>
+    </a>
     {% endfor %}
 </ul>

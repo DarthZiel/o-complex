@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "weather.apps.WeatherConfig",
 
-
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 ]
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_plotly_dash.middleware.BaseMiddleware",
 ]
 
 ROOT_URLCONF = "settings.urls"
