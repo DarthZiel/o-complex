@@ -14,6 +14,7 @@ class SearchHistory(models.Model):
     user = models.ForeignKey(user, on_delete=models.CASCADE)
     class Meta:
         db_table = 'search_history'
+        unique_together = [['longitude', 'latitude']]
 
     def __str__(self):
         return self.name

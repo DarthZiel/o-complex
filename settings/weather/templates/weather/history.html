@@ -9,12 +9,13 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Search History</h2>
+        <h2 class="text-center mb-4">История поиска</h2>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Название пункта</th>
+                    <th>Доп. информация</th>
                     <th>Долгота</th>
                     <th>Ширина</th>
                     <th>Последний визит</th>
@@ -25,7 +26,9 @@
                 {% for history in history_list %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ history.name }}</td>
+                  <td>  <a href="{% url 'weather:report' %}?name={{ history.name }}&latitude={{ history.latitude }}&longitude={{ history.longitude }}&additional_info={{history.additional_info}}">{{ history.name }} </a></td>
+
+                    <td>{{ history.additional_info }}</td>
                     <td>{{ history.longitude }}</td>
                     <td>{{ history.latitude }}</td>
                     <td>{{ history.last_visited }}</td>

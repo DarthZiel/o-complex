@@ -3,14 +3,12 @@
                 <h2 class="text-center mb-4">Поиск населенного пункта</h2>
                 <form method="get" action="{% url 'weather:search' %}">
                     <div class="form-group">
-                        <input type="text" id="city-input" name="city" class="form-control" placeholder="Enter city name" hx-get="{% url 'weather:city-autocomplete' %}" hx-trigger="keyup changed delay:500ms" hx-target="#autocomplete-results" autocomplete="">
+                        <input type="text" id="city-input" name="city" class="form-control" placeholder="Введите название" hx-get="{% url 'weather:city-autocomplete' %}" hx-trigger="keyup changed delay:500ms" hx-target="#autocomplete-results" autocomplete="">
                     </div>
                     <div id="autocomplete-results" class="list-group"></div>
-                    <button type="submit" class="btn btn-primary btn-block mt-4">Search</button>
                 </form>
             </div>
         </div>
-
     <div hx-get="{% url 'weather:last_viewed_city_view' %}" hx-trigger="load">
 
      </div>

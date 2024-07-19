@@ -8,6 +8,7 @@ authors = ["DarthZiel <Studerzhan@gmail.com>"]
 python = "^3.10"
 requests = "^2.32.3"
 django = "^5.0.7"
+django-plotly-dash = "^2.3.1"
 
 [tool.poetry.dev-dependencies]
 

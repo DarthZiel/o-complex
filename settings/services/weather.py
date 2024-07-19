@@ -38,20 +38,26 @@ def history_update(request):
     latitude = request.GET.get('latitude', '')
     user_instance = get_user_model().objects.get(email=email)
 
-    search_history_instance, created = SearchHistory.objects.get_or_create(
-        name=name,
-        user=user_instance,
-        additional_info=additional_info,
-        latitude=float(latitude.replace(',', '.')),
-        longitude=float(longitude.replace(',', '.'))
-    )
-
-    if created:
-        return search_history_instance.longitude, search_history_instance.latitude
-    else:
+    try:
+        search_history_instance = SearchHistory.objects.get(
+            name=name,
+            user=user_instance,
+            additional_info=additional_info,
+            latitude=float(latitude.replace(',', '.')),
+            longitude=float(longitude.replace(',', '.'))
+        )
         search_history_instance.counter += 1
         search_history_instance.save()
-        return search_history_instance.longitude, search_history_instance.latitude
+    except SearchHistory.DoesNotExist:
+        search_history_instance = SearchHistory.objects.create(
+            name=name,
+            user=user_instance,
+            additional_info=additional_info,
+            latitude=float(latitude.replace(',', '.')),
+            longitude=float(longitude.replace(',', '.'))
+        )
+
+    return search_history_instance.longitude, search_history_instance.latitude
 
 
 app = DjangoDash('TemperatureChart')  # идентификатор вашего Dash приложения
@@ -87,7 +93,7 @@ def build_chart(latitude, longitude):
     )
 
     layout = go.Layout(
-        title='Temperature Over Time',
+        title='Температура в ближайшее время',
         xaxis=dict(title='Date'),
         yaxis=dict(title='Temperature (°C)'),
     )
@@ -104,6 +110,7 @@ def last_viewed_city(request):
         history_record = SearchHistory.objects.filter(user=user).last()
         return history_record
     return None
+
 
 def get_history(request):
     user = request.user.id
